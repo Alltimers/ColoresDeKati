@@ -13,6 +13,19 @@ $(document).ready(function(){
   });
 });
 
+document.getElementById('file-upload').addEventListener('change', readURL, true);
+function readURL(){
+   var file = document.getElementById("file-upload").files[0];
+   var reader = new FileReader();
+   reader.onloadend = function(){
+      document.getElementById('image').style.backgroundImage = "url(" + reader.result + ")";        
+   }
+   if(file){
+      reader.readAsDataURL(file);
+    }else{
+    }
+}
+
 var css = document.querySelector("h3");
 var color1 = document.querySelector(".color1");
 var color2 = document.querySelector(".color2");
@@ -24,6 +37,8 @@ function setGradient() {
 
 	css.textContent = body.style.background + ";";
 }
+
+
 
 color1.addEventListener("input", setGradient);
 
